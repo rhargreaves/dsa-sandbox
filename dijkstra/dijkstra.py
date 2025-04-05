@@ -25,15 +25,17 @@ class Connection:
 def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
     visited = []
     seenNodes = []
+    heappush(seenNodes, (startNode.weight, startNode))
 
-    def walk(node):
+    while seenNodes:
+        node = heappop(seenNodes)[1]
         visited.append(node.label)
         print(f"*** Visited Node {node.label} from {
-            node.prev.label if node.prev is not None else "unknown"} weight = {node.weight}\n")
+            node.prev.label if node.prev is not None else "None"} weight = {node.weight}\n")
 
         if node == goalNode:
             print("*** Visited goal node. Ending.")
-            return
+            break
 
         for c in node.neighbours:
             if c.node.label in visited:
@@ -47,13 +49,6 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
                 # optional: recreate the path taken by tracking previous node when weight is updated
                 c.node.prev = node
                 heappush(seenNodes, (c.node.weight, c.node))
-            else:
-                print(f"*** Not updating node weight: {c.node.label} weight = {c.node.weight}\n")
-
-        nextNode = heappop(seenNodes)[1]
-        walk(nextNode)
-
-    walk(startNode)
 
     # optional: return the route to take alongside the weight
     pathBack = []
