@@ -15,3 +15,7 @@ make deps
 ```sh
 make test
 ```
+
+## Python notes
+
+* `sorted()` time is *O(n * log n)*, space is *O(n)* (Tim sort)

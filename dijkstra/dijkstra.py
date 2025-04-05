@@ -9,6 +9,7 @@ class Node:
     label: str
     weight: int
     neighbours: list['Connection']
+    prev: 'Node' = None   # optional: for tracking back to build the shortest path!
 
 
 @dataclass
@@ -17,13 +18,8 @@ class Connection:
     node: Node
 
 
-# sorted() is O(n log n)
-
 def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
     visited = []
-
-    # for keeping track of the shortest way back to the start node
-    path = dict({})
 
     def walk(node):
         visited.append(node)
@@ -38,10 +34,8 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
                 c.node.weight = new_weight
                 print(f"*** Updated {c.node.label} weight ({c.node.weight}) " +
                       f"arriving from {node.label}\n")
-
-                # to recreate the path taken - the key is to keep a note of the previous node
-                # that we got to this node from when we update a new weight
-                path[c.node.label] = node
+                # optional: recreate the path taken by tracking previous node when weight is updated
+                c.node.prev = node
             else:
                 print(f"*** Not updating node weight: {c.node.label} weight = {c.node.weight}\n")
 
@@ -51,10 +45,12 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
 
     walk(startNode)
 
-    node = goalNode
+    # optional: return the route alongside the weight
     pathBack = []
-    while node is not None:
+    node = goalNode
+    while node.prev is not None:
         pathBack.append(node.label)
-        node = path.get(node.label, None)
+        node = node.prev
+    pathBack.append(startNode.label)
 
     return goalNode.weight, list(reversed(pathBack))
