@@ -21,6 +21,14 @@ class Connection:
 def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
     visited = []
 
+    seenNodes = []
+
+    def get_lowest_weight_node_seen():
+        nodes = list(sorted(seenNodes, key=lambda n: n.weight))
+        if len(nodes) == 0:
+            return None
+        return nodes[0]
+
     def walk(node):
         visited.append(node.label)
         print(f"*** Visited Node {node.label} from {
@@ -37,12 +45,16 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
                       f"arriving from {node.label}\n")
                 # optional: recreate the path taken by tracking previous node when weight is updated
                 c.node.prev = node
+                if c.node not in seenNodes:
+                    seenNodes.append(c.node)
             else:
                 print(f"*** Not updating node weight: {c.node.label} weight = {c.node.weight}\n")
 
-        for c in sorted(node.neighbours, key=lambda c: c.node.weight):
-            if c.node.label not in visited:
-                walk(c.node)
+        nextNode = get_lowest_weight_node_seen()
+        if nextNode is None:
+            return
+        seenNodes.remove(nextNode)
+        walk(nextNode)
 
     walk(startNode)
 
