@@ -63,9 +63,7 @@ def test_four_nodes_diamond_2():
 def test_complex_graph():
     goal = Node('GOAL')
 
-    g_node = Node('G')
-    g_node.neighbours.append(Edge(7, goal))
-
+    g_node = Node('G', neighbours=[Edge(7, goal)])
     h_node = Node('H', neighbours=[Edge(5, goal)])
 
     c_node = Node('C', neighbours=[Edge(3, g_node)])
