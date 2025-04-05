@@ -22,11 +22,12 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
     visited = []
 
     def walk(node):
-        visited.append(node)
-        print(f"*** Visited Node {node.label} weight = {node.weight}\n")
+        visited.append(node.label)
+        print(f"*** Visited Node {node.label} from {
+            node.prev.label if node.prev is not None else "unknown"} weight = {node.weight}\n")
 
         for c in node.neighbours:
-            if c in visited:
+            if c.node.label in visited:
                 print(f"*** Skipping weight check of {c.node.label} as it is visited already")
                 continue
             new_weight = c.effort + node.weight
@@ -40,7 +41,7 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
                 print(f"*** Not updating node weight: {c.node.label} weight = {c.node.weight}\n")
 
         for c in sorted(node.neighbours, key=lambda c: c.node.weight):
-            if c.node not in visited:
+            if c.node.label not in visited:
                 walk(c.node)
 
     walk(startNode)
