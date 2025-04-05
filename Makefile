@@ -3,5 +3,5 @@ deps:
 .PHONY: deps
 
 test:
-	python3 -m pytest -rP -vv .
+	python3 -m pytest -vv .
 .PHONY: test
