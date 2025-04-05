@@ -19,9 +19,11 @@ class Connection:
 
 # sorted() is O(n log n)
 
-def find_shortest_path(startNode, goalNode) -> (int, []):
+def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
     visited = []
-    path = dict({})  # currentNodeLabel, sourceNode
+
+    # for keeping track of the shortest way back to the start node
+    path = dict({})
 
     def walk(node):
         visited.append(node)
@@ -34,7 +36,8 @@ def find_shortest_path(startNode, goalNode) -> (int, []):
             new_weight = c.effort + node.weight
             if new_weight < c.node.weight:
                 c.node.weight = new_weight
-                print(f"*** Updated {c.node.label} weight ({c.node.weight}) arriving from {node.label}\n")
+                print(f"*** Updated {c.node.label} weight ({c.node.weight}) " +
+                      f"arriving from {node.label}\n")
 
                 # to recreate the path taken - the key is to keep a note of the previous node
                 # that we got to this node from when we update a new weight
@@ -53,4 +56,5 @@ def find_shortest_path(startNode, goalNode) -> (int, []):
     while node is not None:
         pathBack.append(node.label)
         node = path.get(node.label, None)
+
     return goalNode.weight, list(reversed(pathBack))
