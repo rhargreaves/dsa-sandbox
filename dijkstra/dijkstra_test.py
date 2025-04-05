@@ -29,6 +29,8 @@ def test_three_nodes_one_path():
             Connection(1, goal)]))])
 
     distance, path = find_shortest_path(node, goal)
+
+    assert distance == 2
     assert path == ['START', 'A', 'GOAL']
 
 
@@ -40,6 +42,8 @@ def test_four_nodes_diamond():
         ])
 
     distance, path = find_shortest_path(node, goal)
+
+    assert distance == 3
     assert path == ['START', 'B', 'GOAL']
 
 
@@ -51,6 +55,8 @@ def test_four_nodes_diamond_2():
         ])
 
     distance, path = find_shortest_path(node, goal)
+
+    assert distance == 2
     assert path == ['START', 'A', 'GOAL']
 
 
@@ -72,4 +78,6 @@ def test_complex_graph():
     start_node = Node('START', 0, [Connection(1, a_node), Connection(2, b_node)])
 
     distance, path = find_shortest_path(start_node, goal)
+
+    assert distance == 11
     assert path == ['START', 'B', 'E', 'H', 'GOAL']

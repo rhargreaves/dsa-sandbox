@@ -45,7 +45,7 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
 
     walk(startNode)
 
-    # optional: return the route alongside the weight
+    # optional: return the route to take alongside the weight
     pathBack = []
     node = goalNode
     while node.prev is not None:
