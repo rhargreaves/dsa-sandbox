@@ -142,3 +142,34 @@ def test_another_complex_graph_with_nodes_with_more_than_2_edges():
 
     assert weight == 11
     assert path == ['A', 'B', 'D', 'GOAL']
+
+
+def test_another_complex_graph_with_multiple_connected_nodes():
+    a_node = Node('A', 0)
+    b_node = Node('B')
+    c_node = Node('C')
+    d_node = Node('D')
+    e_node = Node('E')
+    f_node = Node('F')
+    g_node = Node('G')
+
+    connect_nodes(a_node, c_node, 3)
+    connect_nodes(a_node, f_node, 2)
+
+    connect_nodes(b_node, d_node, 1)
+    connect_nodes(b_node, e_node, 2)
+    connect_nodes(b_node, f_node, 6)
+    connect_nodes(b_node, g_node, 2)
+
+    connect_nodes(c_node, f_node, 2)
+    connect_nodes(c_node, d_node, 4)
+    connect_nodes(c_node, e_node, 1)
+
+    connect_nodes(e_node, f_node, 3)
+
+    connect_nodes(f_node, g_node, 5)
+
+    weight, path = find_shortest_path(a_node, b_node)
+
+    assert weight == 6
+    assert path == ['A', 'C', 'E', 'B']
