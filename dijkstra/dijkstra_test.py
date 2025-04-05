@@ -5,7 +5,9 @@ from dijkstra import find_shortest_path, Node, Connection, INF
 def test_single_node():
     node = Node('S', 0, [])
 
-    path = find_shortest_path(node, node)
+    distance, path = find_shortest_path(node, node)
+
+    assert distance == 0
     assert path == ['S']
 
 
@@ -14,7 +16,9 @@ def test_two_nodes():
     node = Node('START', 0, [
         Connection(1, goal)])
 
-    path = find_shortest_path(node, goal)
+    distance, path = find_shortest_path(node, goal)
+
+    assert distance == 1
     assert path == ['START', 'GOAL']
 
 
@@ -24,7 +28,7 @@ def test_three_nodes_one_path():
        Connection(1, Node('A', INF, [
             Connection(1, goal)]))])
 
-    path = find_shortest_path(node, goal)
+    distance, path = find_shortest_path(node, goal)
     assert path == ['START', 'A', 'GOAL']
 
 
@@ -35,7 +39,7 @@ def test_four_nodes_diamond():
         Connection(2, Node('B', INF, [Connection(1, goal)]))
         ])
 
-    path = find_shortest_path(node, goal)
+    distance, path = find_shortest_path(node, goal)
     assert path == ['START', 'B', 'GOAL']
 
 
@@ -46,7 +50,7 @@ def test_four_nodes_diamond_2():
         Connection(2, Node('B', INF, [Connection(1, goal)]))
         ])
 
-    path = find_shortest_path(node, goal)
+    distance, path = find_shortest_path(node, goal)
     assert path == ['START', 'A', 'GOAL']
 
 
@@ -67,5 +71,5 @@ def test_complex_graph():
 
     start_node = Node('START', 0, [Connection(1, a_node), Connection(2, b_node)])
 
-    path = find_shortest_path(start_node, goal)
+    distance, path = find_shortest_path(start_node, goal)
     assert path == ['START', 'B', 'E', 'H', 'GOAL']
