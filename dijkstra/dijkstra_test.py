@@ -81,3 +81,28 @@ def test_complex_graph():
 
     assert weight == 11
     assert path == ['START', 'B', 'E', 'H', 'GOAL']
+
+
+def test_complex_graph_with_cheeky_shortcut():
+    goal = Node('GOAL')
+
+    g_node = Node('G', neighbours=[Edge(7, goal)])
+    h_node = Node('H', neighbours=[Edge(5, goal)])
+
+    c_node = Node('C', neighbours=[Edge(3, g_node)])
+    d_node = Node('D', neighbours=[Edge(6, g_node)])
+    e_node = Node('E', neighbours=[Edge(1, h_node)])
+    f_node = Node('F', neighbours=[Edge(5, h_node)])
+
+    d_node.neighbours.append(Edge(1, e_node))
+    e_node.neighbours.append(Edge(1, d_node))
+
+    a_node = Node('A', neighbours=[Edge(2, c_node), Edge(2, d_node)])
+    b_node = Node('B', neighbours=[Edge(3, e_node), Edge(12, f_node)])
+
+    start_node = Node('START', 0, [Edge(1, a_node), Edge(2, b_node)])
+
+    weight, path = find_shortest_path(start_node, goal)
+
+    assert weight == 10
+    assert path == ['START', 'A', 'D', 'E', 'H', 'GOAL']
