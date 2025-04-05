@@ -29,6 +29,8 @@ def find_shortest_path(startNode, goalNode):
             if new_weight < c.node.weight:
                 c.node.weight = new_weight
                 print(f"*** Node {c.node.label} weight = {c.node.weight}\n")
+            else:
+                print(f"*** Not updating node weight: {c.node.label} weight = {c.node.weight}\n")
 
         for c in sorted(node.neighbours, key=lambda c: c.node.weight):
             walk(c.node)
