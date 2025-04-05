@@ -22,9 +22,9 @@ make test
 
 ## Dijkstra's shortest-path algorithm
 
-V = number of vertices, E = number of edges
-Time complexity = (binary heap) *O((E + V) log V)*
-Soace complexity = (binary heap) *O(V)
+* V = number of vertices, E = number of edges
+* Time complexity = (binary heap) *O((E + V) log V)*
+* Soace complexity = (binary heap) *O(V)
 
 It is a greedy algorithm, meaning it makes the best choice available at each step.
 
