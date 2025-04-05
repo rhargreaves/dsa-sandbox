@@ -37,7 +37,7 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
         visited.add(node.label)
 
         print(f"*** Visited Node {node.label} from {
-            node.prev.label if node.prev is not None else "None"} weight = {node.weight}\n")
+            node.prev.label if node.prev else None} weight = {node.weight}\n")
 
         if node == goalNode:
             print("*** Visited goal node. Ending.")
