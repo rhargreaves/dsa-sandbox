@@ -17,6 +17,8 @@ class Connection:
     node: Node
 
 
+# sorted() is O(n log n)
+
 def find_shortest_path(startNode, goalNode):
     visited = []
 
