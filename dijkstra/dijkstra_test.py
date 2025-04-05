@@ -37,3 +37,14 @@ def test_four_nodes_diamond():
 
     path = find_shortest_path(node, goal)
     assert path == ['START', 'B', 'GOAL']
+
+
+def test_four_nodes_diamond_2():
+    goal = Node('GOAL', INF, [])
+    node = Node('START', 0, [
+        Connection(1, Node('A', INF, [Connection(1, goal)])),
+        Connection(2, Node('B', INF, [Connection(1, goal)]))
+        ])
+
+    path = find_shortest_path(node, goal)
+    assert path == ['START', 'A', 'GOAL']
