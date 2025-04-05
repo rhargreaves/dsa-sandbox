@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from heapq import heappop, heappush
 import sys
 
@@ -8,8 +8,8 @@ INF = sys.maxsize
 @dataclass
 class Node:
     label: str
-    weight: int
-    neighbours: list['Edge']
+    weight: int = INF
+    neighbours: list['Edge'] = field(default_factory=lambda: [])
     prev: 'Node' = None   # optional: for tracking back to build the shortest path!
 
     def __lt__(self, other):
