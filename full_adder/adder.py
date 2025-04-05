@@ -7,7 +7,7 @@ def add(a, b):
         b_bit = (b & 1)
         sum, c_out = add_bits(a_bit, b_bit, c_in)
         if sum:
-            res |= pos
+            res |= pos  # this is the trick to build the result bits in the right order!
         c_in = c_out
         a >>= 1
         b >>= 1
