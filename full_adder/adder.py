@@ -1,6 +1,21 @@
+def add(a, b):
+    a_bit = (a & 1)
+    b_bit = (b & 1)
+    c_in = 0
+    res = 0
+    pos = 1
+    while a != 0 or b != 0 or c_in != 0:
+        sum, c_out = add_bits(a_bit, b_bit, c_in)
+        if sum:
+            res |= pos
+        c_in = c_out
+        a >>= 1
+        b >>= 1
+        a_bit = (a & 1)
+        b_bit = (b & 1)
+        pos <<= 1
 
-def add(x, y):
-    return x + y
+    return res
 
 
 def add_bits(a: int, b: int, c_in: int) -> tuple[int, int]:   # sum, c_out
