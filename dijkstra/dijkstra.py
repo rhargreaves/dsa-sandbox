@@ -21,7 +21,7 @@ def find_shortest_path(startNode, goalNode):
     visited = []
 
     def walk(node):
-        visited.append(node.label)
+        visited.append(node)
         print(f"*** Visited Node {node.label} weight = {node.weight}\n")
 
         for c in node.neighbours:
@@ -35,21 +35,11 @@ def find_shortest_path(startNode, goalNode):
 
     walk(startNode)
 
-    path = []
-
-    def walk2(node):
-        print(f"--- Walking {node.label}\n")
-        if node in path:
-            return False
-        path.append(node)
-        if node == goalNode:
-            print(f"--- At goal {node.label}\n")
-            return True
-        for c in sorted(node.neighbours, key=lambda c: c.node.weight):
-            print(f"--- Walking connection {c.node.label}\n")
-            if walk2(c.node):
-                return True
-
-    walk2(startNode)
-
-    return [n.label for n in path]
+    path = sorted(visited, key=lambda n: n.weight)
+    result = []
+    for n in path:
+        print(f"--- Node: {n}\n")
+        result.append(n)
+        if n == goalNode:
+            break
+    return [n.label for n in result]
