@@ -23,11 +23,19 @@ class Connection:
 
 
 def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
-    seenNodes = []
-    heappush(seenNodes, (startNode.weight, startNode))
+    visited = set()  # O(1) - efficient checking to ensure don't process nodes twice
+    unvisited = []
+    heappush(unvisited, (startNode.weight, startNode))  # this is enough! we'll add them as we "see them"
 
-    while seenNodes:
-        node = heappop(seenNodes)[1]
+    while unvisited:
+        node = heappop(unvisited)[1]
+
+        if node.label in visited:
+            print(f"*** Already visited {node.label}. Skipping")
+            continue
+
+        visited.add(node.label)
+
         print(f"*** Visited Node {node.label} from {
             node.prev.label if node.prev is not None else "None"} weight = {node.weight}\n")
 
@@ -43,7 +51,7 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
                       f"arriving from {node.label}\n")
                 # optional: recreate the path taken by tracking previous node when weight is updated
                 c.node.prev = node
-                heappush(seenNodes, (c.node.weight, c.node))
+                heappush(unvisited, (c.node.weight, c.node))
 
     # optional: return the route to take alongside the weight
     pathBack = []
