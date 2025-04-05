@@ -9,7 +9,7 @@ INF = sys.maxsize
 class Node:
     label: str
     weight: int
-    neighbours: list['Connection']
+    neighbours: list['Edge']
     prev: 'Node' = None   # optional: for tracking back to build the shortest path!
 
     def __lt__(self, other):
@@ -17,8 +17,8 @@ class Node:
 
 
 @dataclass
-class Connection:
-    effort: int
+class Edge:
+    weight: int
     node: Node
 
 
@@ -44,7 +44,7 @@ def find_shortest_path(startNode, goalNode) -> tuple[int, list[str]]:
             break
 
         for c in node.neighbours:
-            new_weight = c.effort + node.weight
+            new_weight = c.weight + node.weight
             if new_weight < c.node.weight:
                 c.node.weight = new_weight
                 print(f"*** Updated {c.node.label} weight ({c.node.weight}) " +
