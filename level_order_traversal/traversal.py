@@ -1,4 +1,8 @@
+# otherwise known as breadth-first search
 # solution for https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem
+
+import queue
+
 
 class Node:
     def __init__(self, info):
@@ -38,44 +42,30 @@ class BinarySearchTree:
                     break
 
 
-# original solution
-def height(root):
+def levelOrder(root):
+    q = queue.Queue()
+    q.put(root)
 
-    def walk(node, level):
-        left_level = level
-        right_level = level
+    output = []
+
+    while not q.empty():
+        node = q.get()
+
         if node.left:
-            left_level = walk(node.left, level + 1)
+            q.put(node.left)
         if node.right:
-            right_level = walk(node.right, level + 1)
-        return max(left_level, right_level)
+            q.put(node.right)
+        output.append(node.info)
 
-    return walk(root, 0)
-
-
-# alternative solution
-def height2(node):
-    if not node.left and not node.right:
-        return 0
-    left = 0
-    right = 0
-    if node.left:
-        left = height2(node.left)
-    if node.right:
-        right = height2(node.right)
-    return max(left, right) + 1
-
-
-# slick solution!
-def height3(node):
-    if not node:
-        return -1
-    return max(height3(node.left), height3(node.right)) + 1
+    print(" ".join(map(str, output)))
 
 
 tree = BinarySearchTree()
 t = int(input())
+
 arr = list(map(int, input().split()))
+
 for i in range(t):
     tree.create(arr[i])
-print(height(tree.root))
+
+levelOrder(tree.root)
