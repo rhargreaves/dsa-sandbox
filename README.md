@@ -16,9 +16,7 @@ make deps
 make test
 ```
 
-## Python notes
-
-* `sorted()` time is *O(n * log n)*, space is *O(n)* (Tim sort)
+# Algorithm notes
 
 ## Dijkstra's shortest-path algorithm
 
@@ -29,6 +27,41 @@ make test
 It is a greedy algorithm, meaning it makes the best choice available at each step.
 
 Dijkstra is neither depth-first search nor breadth-first. It is **least-cost-first**.
+
+# Python notes
+
+## Memory Management
+
+* Uses **reference counting** to automatically deallocate objects when they are out-of-scope. This happens immediately, outside of the GC.
+* Can use `del` to decrement count (removes a binding between a name and an object):
+
+```py
+a = 1  # ref count = 1
+b = a  # 2
+del b  # 1
+del a  # 0
+```
+
+### Garbage Collector
+
+* Uses a **cyclic garbage collector** (to deal with objects which reference each other in a **cyclic** manner).
+* Three generations (`gen0`, `gen1`, `gen2`). Objects start in `gen0`.
+* Runs automatically periodically (or manually using `gc.collect()`)
+
+### CPython: Memory Arenas, Pools & Blocks
+
+* `pymalloc` is Python's private allocator (i.e. internal allocation, not with OS & `malloc`) for small objects < 512 bytes.
+* It allocates memory in 256 KB blocks (**arenas**).
+* A **pool** is a 4 KB subdivision of an arena, holding blocks of the same size class.
+* A **block** is a chunk of memory in a pool.
+* Aims to reduce fragmentation and OS memory allocation calls.
+
+### Sorting
+
+`sorted()` time is *O(n * log n)*, space is *O(n)* (Tim sort)
+
+
+
 
 ### Resources
 
