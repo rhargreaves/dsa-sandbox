@@ -28,6 +28,10 @@ It is a greedy algorithm, meaning it makes the best choice available at each ste
 
 Dijkstra is neither depth-first search nor breadth-first. It is **least-cost-first**.
 
+## Trie trees
+
+* A state machine where each node is a state, and the edges represent the transitions based on input characters. This model aligns naturally with the concept of prefixes in strings.
+
 # Python notes
 
 ## Memory Management
