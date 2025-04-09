@@ -25,7 +25,7 @@ import heapq
 # 2. Immediately pop from max_heap and insert into min_heap:
 # [          ] [ X        ]
 
-# 3. If min_head has more elements, pop from min_heap and insert into max_heap:
+# 3. If min_heap has more elements, pop from min_heap and insert into max_heap:
 # e.g.
 # [ X X      ] [ X X X    ]
 # [ X X X    ] [ X X      ]
