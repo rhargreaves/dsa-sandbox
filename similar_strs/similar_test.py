@@ -13,3 +13,10 @@ def test_returns_one_index_to_remove():
     str2 = "hid"
 
     assert indicesToRemove(str1, str2) == [2]
+
+
+def test_returns_more_than_one_index_to_remove():
+    str1 = "aabbb"
+    str2 = "aabb"
+
+    assert indicesToRemove(str1, str2) == [2, 3, 4]
