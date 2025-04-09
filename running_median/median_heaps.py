@@ -14,25 +14,6 @@ import heapq
 # The function accepts INTEGER_ARRAY a as parameter.
 #
 
-# Calculating Median with 2 Heaps
-# -------------------------------
-# Given:
-# [ max_heap ] [ min_heap ]
-
-# 1. Insert into max_heap:
-# [ X        ] [          ]
-
-# 2. Immediately pop from max_heap and insert into min_heap:
-# [          ] [ X        ]
-
-# 3. If min_heap has more elements, pop from min_heap and insert into max_heap:
-# e.g.
-# [ X X      ] [ X X X    ]
-# [ X X X    ] [ X X      ]
-
-# 4. Median is largest of max_heap (if max_heap bigger)
-# OR average of largest of max_heap and smallest of min_heap (if heaps are equal size)
-
 
 def debug(text):
     print(text, file=sys.stderr)

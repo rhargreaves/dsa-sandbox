@@ -32,6 +32,33 @@ Dijkstra is neither depth-first search nor breadth-first. It is **least-cost-fir
 
 * A state machine where each node is a state, and the edges represent the transitions based on input characters. This model aligns naturally with the concept of prefixes in strings.
 
+## Running medians using 2 heaps
+
+Given:
+```
+[ max_heap ] [ min_heap ]
+```
+
+1. Insert into *max_heap*:
+```
+[ X        ] [          ]
+```
+
+2. Immediately pop from *max_heap* and insert into *min_heap*:
+```
+[          ] [ X        ]
+```
+
+3. If *min_heap* has more elements, pop from *min_heap* and insert into *max_heap*:
+e.g.
+```
+[ X X      ] [ X X X    ]
+[ X X X    ] [ X X      ]
+```
+
+4. Median is largest of *max_heap* (if *max_heap* bigger)
+OR average of largest of *max_heap* and smallest of *min_heap* (if heaps are equal size)
+
 # Python notes
 
 ## Memory Management
