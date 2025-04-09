@@ -61,6 +61,11 @@ OR average of largest of *max_heap* and smallest of *min_heap* (if heaps are equ
 
 # Python notes
 
+## Recursion
+
+Some exercises can throw a runtime error for deep recurvise calls.
+Use `sys.setrecursionlimit(x)` to increase the limit to some *x* (e.g. 15000).
+
 ## Memory Management
 
 * Uses **reference counting** to automatically deallocate objects when they are out-of-scope. This happens immediately, outside of the GC.
