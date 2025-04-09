@@ -1,3 +1,5 @@
+MODULE?=.
+
 deps:
 	pip3 install -r requirements.txt
 .PHONY: deps
@@ -7,5 +9,5 @@ test:
 .PHONY: test
 
 test-mod:
-	python3 -m pytest -rP -vv . $(MODULE)
+	python3 -m pytest -rP -vv $(MODULE)
 .PHONY: test-mod
