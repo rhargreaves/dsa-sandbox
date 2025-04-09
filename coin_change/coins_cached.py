@@ -18,7 +18,7 @@ import sys
 cache = {}
 
 def getWaysCached(amount, denoms):
-    key = f"{amount}_{denoms[0] if denoms else None}"
+    key = (amount, denoms[0] if denoms else None)
     if key in cache:
         return cache[key]
     else:
