@@ -61,6 +61,23 @@ OR average of largest of *max_heap* and smallest of *min_heap* (if heaps are equ
 
 # Python notes
 
+## Debug Print
+
+Helper for when you need to log vars to **stderr** in a hurry...
+
+```python
+def debug(context='', **kwargs):
+    print((context + ": " if context else '') +
+          ' '.join(f"{k}={v}" for k, v in kwargs.items()), file=sys.stderr)
+
+a = 0
+b = 1
+debug(a=a,b=b)
+# a=0 b=1
+debug("done something", a=a)
+# done something: a=0
+```
+
 ## Recursion
 
 Some exercises can throw a runtime error for deep recurvise calls.
