@@ -176,3 +176,4 @@ cython_debug/
 
 local_testing/*.txt
 local_testing/main.py
+.vscode/
