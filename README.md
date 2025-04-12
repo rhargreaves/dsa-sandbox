@@ -80,8 +80,18 @@ debug("done something", a=a)
 
 ## Recursion
 
-Some exercises can throw a runtime error for deep recurvise calls.
+Some exercises can throw a runtime error for deep recursive calls.
 Use `sys.setrecursionlimit(x)` to increase the limit to some *x* (e.g. 15000).
+
+## Multi-dimensional Array Init
+
+A common gotcha is initialising 2D arrays like `arr = [[None] * 10] * 5`. 
+This only creates an outer array with 5 references to a SINGLE inner array with 10 `None`s.
+Solve this by using generators:
+
+```python
+arr = [[None] * 10 for i in range(5)]
+```
 
 ## Memory Management
 
