@@ -23,6 +23,9 @@ def formingMagicSquare(square):
     valid_squares = []
     squares = permutations(range(1, 10))
     for s in squares:
+        # centre must be 5
+        if s[4] != 5:
+            continue
         # diagnonals
         if s[0] + s[4] + s[8] != 15 or \
                 s[6] + s[4] + s[2] != 15:
