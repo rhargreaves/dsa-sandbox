@@ -23,16 +23,15 @@ def formingMagicSquare(square):
     valid_squares = []
     squares = permutations(range(1, 10))
     for s in squares:
+        # diagnonals
         if s[0] + s[4] + s[8] != 15 or \
                 s[6] + s[4] + s[2] != 15:
             continue
-        if s[0] + s[1] + s[2] != 15 or \
-            s[3] + s[4] + s[5] != 15 or \
-                s[6] + s[7] + s[8] != 15:
+        # rows
+        if not all(sum(s[i:i+3]) == 15 for i in range(0, 9, 3)):
             continue
-        if s[0] + s[3] + s[6] != 15 or \
-            s[1] + s[4] + s[7] != 15 or \
-                s[2] + s[5] + s[8] != 15:
+        # cols
+        if not all(s[i] + s[i+3] + s[i+6] == 15 for i in range(0, 3)):
             continue
         valid_squares.append(s)
 
