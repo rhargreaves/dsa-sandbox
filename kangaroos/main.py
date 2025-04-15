@@ -27,10 +27,7 @@ def kangaroo(x1, v1, x2, v2):
     debug(x1=x1, v1=v1, x2=x2, v2=v2)
 
     if v1 == v2:  # needed to avoid div/0 below
-        if x1 != x2:
-            return "NO"
-        else:
-            return "YES"
+        return "NO" if x1 != x2 else "YES"
 
     # if x1 + v1*t == x2 + v2*t (and t is a +ve int, then they meet)
     # v1*t - v2*t = x2 - x1
