@@ -1,5 +1,7 @@
 # Data Structures & Algorithms Sandbox
 
+Various 🥷⏫ et al. solutions & notes
+
 ## Requirements
 
 * Python 3.13+
