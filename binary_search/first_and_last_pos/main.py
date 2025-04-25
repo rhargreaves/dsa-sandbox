@@ -11,46 +11,29 @@ def debug(context="", **kwargs):
 
 
 class Solution:
-	def searchRange(self, nums: List[int], target: int) -> List[int]:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
 
-        def findFirst(left, right):
-            debug("findFirst", left=left, right=right)
+        def findBound(left, right, isLast):
+            debug("findBound", left=left, right=right, isLast=isLast)
+
             if left > right:
                 return -1
 
             index = (left + right) // 2
             if nums[index] == target:
-                if index == 0:
+                if (not isLast and index == 0) or (isLast and index == len(nums) - 1):
                     return index
-                if nums[index-1] < target:
+                if (not isLast and nums[index - 1] < target) or (
+                    isLast and nums[index + 1] > target
+                ):
                     return index
 
-            if nums[index] >= target:
-                return findFirst(left, index-1)
+            if (not isLast and nums[index] >= target) or (nums[index] > target):
+                return findBound(left, index - 1, isLast)
             else:
-                return findFirst(index+1, right)
+                return findBound(index + 1, right, isLast)
 
-        def findLast(left, right):
-            debug("findLast", left=left, right=right)
-            if left > right:
-                return -1
-
-            index = (left + right) // 2
-            if nums[index] == target:
-                if index == len(nums)-1:
-                    return index
-                if nums[index+1] > target:
-                    return index
-
-            if nums[index] > target:
-                return findLast(left, index-1)
-            else:
-                return findLast(index+1, right)
-
-        return [
-            findFirst(0, len(nums)-1),
-            findLast(0, len(nums)-1)]
-
+        return [findBound(0, len(nums) - 1, False), findBound(0, len(nums) - 1, True)]
 
     def searchRange_slow(self, nums: List[int], target: int) -> List[int]:
 
