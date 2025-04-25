@@ -12,23 +12,26 @@ class Solution:
     def addTwoNumbers(
         self, l1: Optional[ListNode], l2: Optional[ListNode]
     ) -> Optional[ListNode]:
-
-        def buildNumber(node, multiplier):
-            if node.next is None:
-                return node.val * multiplier
-            return buildNumber(node.next, multiplier * 10) + (node.val * multiplier)
-
-        a = buildNumber(l1, 1)
-        b = buildNumber(l2, 1)
-
-        result = a + b
-
+        carry = 0
         root = ListNode()
         node = root
-        digits = [int(n) for n in str(result)]
-        node.val = digits.pop()
-        while len(digits) != 0:
-            node.next = ListNode()
-            node = node.next
-            node.val = digits.pop()
+        while True:
+            l1_val = l1.val if l1 else 0
+            l2_val = l2.val if l2 else 0
+            sum = l1_val + l2_val + carry
+            if sum >= 10:
+                carry = 1
+                sum -= 10
+            else:
+                carry = 0
+            node.val = sum
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
+            if l1 or l2 or carry:
+                node.next = ListNode()
+                node = node.next
+            else:
+                break
         return root
