@@ -1,9 +1,4 @@
-#!/bin/python3
-
-import math
 import os
-import random
-import re
 import sys
 
 from collections import Counter
@@ -16,10 +11,12 @@ from collections import Counter
 #
 
 
-def debug(context='', **kwargs):
-    print((context + ": " if context else '') +
-          ' '.join(f"{k}={v}" for k, v in kwargs.items()),
-          file=sys.stderr)
+def debug(context="", **kwargs):
+    print(
+        (context + ": " if context else "")
+        + " ".join(f"{k}={v}" for k, v in kwargs.items()),
+        file=sys.stderr,
+    )
 
 
 def maxSubarray(arr):
@@ -53,8 +50,8 @@ def maxSubarray(arr):
     return [maxSubarray, maxSubsequence]
 
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+if __name__ == "__main__":
+    fptr = open(os.environ["OUTPUT_PATH"], "w")
 
     t = int(input().strip())
 
@@ -65,7 +62,7 @@ if __name__ == '__main__':
 
         result = maxSubarray(arr)
 
-        fptr.write(' '.join(map(str, result)))
-        fptr.write('\n')
+        fptr.write(" ".join(map(str, result)))
+        fptr.write("\n")
 
     fptr.close()
