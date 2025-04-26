@@ -2,6 +2,9 @@ from collections import defaultdict
 from typing import List
 
 
+# see https://www.geeksforgeeks.org/boyer-moore-majority-voting-algorithm/ for a O(1) space solution
+
+
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         freqs = defaultdict(lambda: 0)
