@@ -7,6 +7,10 @@ class ListNode:
         self.next = next
 
 
+# Time complexity = O(n + m)
+# Space complexity = O(1)
+
+
 class Solution:
     def mergeTwoLists(
         self, list1: Optional[ListNode], list2: Optional[ListNode]
@@ -19,10 +23,10 @@ class Solution:
             if (l1_node and l2_node and l1_node.val < l2_node.val) or (
                 l1_node and not l2_node
             ):
-                node.next = ListNode(l1_node.val)
+                node.next = l1_node
                 l1_node = l1_node.next
             elif l2_node:
-                node.next = ListNode(l2_node.val)
+                node.next = l2_node
                 l2_node = l2_node.next
 
             node = node.next
