@@ -12,4 +12,6 @@ class Solution:
             if freqs[n] > top_freq:
                 top_freq = freqs[n]
                 top_element = n
+            if top_freq > len(nums) // 2:
+                break
         return top_element
