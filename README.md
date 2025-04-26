@@ -20,5 +20,6 @@ make test
 
 ## Notes
 
-* [Python](docs/python.md)
-* [Algorithms](docs/algorithms.md)
+* [Python](docs/python.md) - things that can go wrong doing algorithmic problems in Python
+* [Algorithms](docs/algorithms.md) - general notes
+* [Solution Checklist](docs/checklist.md) - things to check for before submitting a non-IDE solution
