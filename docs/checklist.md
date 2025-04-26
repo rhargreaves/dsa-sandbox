@@ -89,3 +89,11 @@ mid = start + end // 2      ❌
 
 mid = (start + end) // 2    ✅
 ```
+
+Or this doozy:
+
+```
+arr = [0] * len(s)+1        ❌
+
+arr = [0] * (len(s)+1)      ✅
+```
