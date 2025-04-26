@@ -95,3 +95,17 @@ Or this doozy:
 arr = [0] * len(s)+1        ❌
 arr = [0] * (len(s)+1)      ✅
 ```
+
+### 9. Falsiness of `None` and `0`
+
+Be careful relying on `None`'s falsiness if also matching `0` is not valid:
+
+```python
+x = None
+
+while True:
+    if not x:
+        do_something()
+        ...
+    x = 0    # do_something() will run again!
+```
