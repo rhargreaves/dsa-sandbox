@@ -1,6 +1,6 @@
 # Solution Checklist
 
-Sometimes when your head is deep in an algorithm you trip on the basics. This is particularly painful if you don't have the luxury of an IDE, compiler or tests helping you verify the result. Before saying "I'm done", check:
+When your head is deep in an algorithm you can easily trip-up on the basics. Especially if you don't have the luxury of an IDE, compiler or tests. Before giving the 👍, check:
 
 ## Silly Mistakes
 
@@ -11,8 +11,8 @@ A simple one, but you can sometimes forget if you've been used to using `for`:
 ```python
 i = 0
 while i < len(s):
-	blah(i)
-	i += 1
+    blah(i)
+    i += 1
 ```
 
 ### 2. Check array indices/length maths
@@ -67,9 +67,9 @@ Wrong ❌
 ```python
 s = "hello"
 for i in range(s):
-	blah(i)
+    blah(i)
 for i in len(s):
-	blah(i)
+    blah(i)
 ```
 
 Right ✅
@@ -77,16 +77,15 @@ Right ✅
 ```python
 s = "hello"
 for i in range(len(s)):
-	blah(i)
+    blah(i)
 ```
 
-### 8. Operator precendence
+### 8. Operator precedence
 
 All gravy until you accidentally write this:
 
 ```
 mid = start + end // 2      ❌
-
 mid = (start + end) // 2    ✅
 ```
 
@@ -94,6 +93,5 @@ Or this doozy:
 
 ```
 arr = [0] * len(s)+1        ❌
-
 arr = [0] * (len(s)+1)      ✅
 ```
