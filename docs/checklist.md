@@ -1,6 +1,6 @@
 # Solution Checklist
 
-If you don't have the luxury of an IDE... Before saying "I'm done", check:
+Sometimes when your head is deep in an algorithm you trip on the basics. This is particularly painful if you don't have the luxury of an IDE, compiler or tests helping you verify the result. Before saying "I'm done", check:
 
 ## Silly Mistakes
 
@@ -78,4 +78,14 @@ Right ✅
 s = "hello"
 for i in range(len(s)):
 	blah(i)
+```
+
+### 8. Operator precendence
+
+All gravy until you accidentally write this:
+
+```
+mid = start + end // 2      ❌
+
+mid = (start + end) // 2    ✅
 ```
