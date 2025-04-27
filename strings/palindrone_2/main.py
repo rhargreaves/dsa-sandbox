@@ -24,6 +24,7 @@ class Solution:
         j = len(s) - 1
         while i < j:
             if s[i] != s[j]:
+                # subtle!
                 return validPalindromeRange(s, i + 1, j) or validPalindromeRange(
                     s, i, j - 1
                 )
