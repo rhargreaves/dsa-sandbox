@@ -12,6 +12,5 @@ class Solution:
                 j += 1
                 if j == len(s):
                     break
-            i += 1
 
         return j == len(s)
