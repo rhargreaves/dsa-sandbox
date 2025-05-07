@@ -1,6 +1,8 @@
 import sys
 from typing import List
 
+# https://leetcode.com/problems/minimum-pair-removal-to-sort-array-i/
+
 
 class Solution:
     def minimumPairRemoval(self, nums: List[int]) -> int:
