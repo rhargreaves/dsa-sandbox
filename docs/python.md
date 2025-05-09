@@ -5,9 +5,15 @@
 Helper for when you need to log vars to **stderr** in a hurry...
 
 ```python
+# HackerRank
 def debug(context='', **kwargs):
     print((context + ": " if context else '') +
           ' '.join(f"{k}={v}" for k, v in kwargs.items()), file=sys.stderr)
+
+# LeetCode
+def debug(context='', **kwargs):
+    print((context + ": " if context else '') +
+          ' '.join(f"{k}={v}" for k, v in kwargs.items()))
 
 a = 0
 b = 1
