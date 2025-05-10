@@ -5,6 +5,59 @@ from typing import List
 
 
 class Solution:
+
+    def __init__(self):
+        self.parent = {}
+        self.rank = {}  # track height of each tree
+        self.count = 0
+
+    def find(self, x):
+        if x not in self.parent:
+            self.parent[x] = x
+            self.rank[x] = 0
+            self.count += 1
+            return self.parent[x]
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x != root_y:
+            if self.rank[root_x] < self.rank[root_y]:
+                self.parent[root_x] = root_y
+            else:
+                self.parent[root_y] = root_x
+                if self.rank[root_x] == self.rank[root_y]:
+                    self.rank[root_x] += 1
+            self.count -= 1
+
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if len(grid) == 0:
+            return 0
+
+        rows = len(grid)
+        cols = len(grid[0])
+        islands = 0
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1":
+                    # Add current cell
+                    self.find((r, c))
+
+                    # Union with left
+                    if c > 0 and grid[r][c - 1] == "1":
+                        self.union((r, c), (r, c - 1))
+                    # Union with up
+                    if r > 0 and grid[r - 1][c] == "1":
+                        self.union((r, c), (r - 1, c))
+                    # Don't need to union right/down as we haven't processed these yet
+
+        return self.count
+
+
+class DfsBfsSolution:
     def numIslands_dfs(self, grid: List[List[str]]) -> int:
         if len(grid) == 0:
             return 0
