@@ -11,15 +11,12 @@ class Solution:
 
         rows = len(grid)
         cols = len(grid[0])
-        visited = set()
         islands = 0
 
         def walk(r, c):
             if grid[r][c] == "0":
                 return
-            if (r, c) in visited:
-                return
-            visited.add((r, c))
+            grid[r][c] = "0"
 
             # left
             if c != 0:
@@ -36,7 +33,7 @@ class Solution:
 
         for r in range(rows):
             for c in range(cols):
-                if grid[r][c] == "1" and (r, c) not in visited:
+                if grid[r][c] == "1":
                     islands += 1
                     walk(r, c)
 
