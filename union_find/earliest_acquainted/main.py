@@ -7,7 +7,7 @@ class Solution:
     def earliestAcq(self, logs: List[List[int]], n: int) -> int:
         parent = {}
         count = n
-        logs.sort(key=lambda l: l[0])
+        logs.sort(key=lambda log: log[0])
 
         def find(x):
             if x not in parent:
