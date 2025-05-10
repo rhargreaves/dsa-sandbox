@@ -13,6 +13,8 @@ class Solution:
         res = []
 
         def backtrack(opened, closed):
+
+            # comparison operator chaining
             if opened == closed == n:
                 res.append("".join(stack))
                 return
