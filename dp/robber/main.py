@@ -17,6 +17,6 @@ class Solution:
             if i > len(nums) - 1:
                 return 0
 
-            return nums[i] + max(dp_cache(i + 2), dp_cache(i + 3))
+            return max(nums[i] + dp_cache(i + 2), dp_cache(i + 1))
 
         return max(dp_cache(0), dp_cache(1))
