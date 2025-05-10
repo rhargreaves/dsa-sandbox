@@ -19,4 +19,4 @@ class Solution:
 
             return max(nums[i] + dp_cache(i + 2), dp_cache(i + 1))
 
-        return max(dp_cache(0), dp_cache(1))
+        return dp_cache(0)
