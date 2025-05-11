@@ -20,14 +20,6 @@ class LRUCache:
         self.lru.next = self.mru
         self.mru.prev = self.lru
 
-    def insert_after(self, node, new_node):
-        old_next = node.next
-        node.next = new_node
-        new_node.prev = node
-        old_next.prev = new_node
-        new_node.next = old_next
-        self.count = +1
-
     def insert_before(self, node, new_node):
         old_prev = node.prev
         node.prev = new_node
