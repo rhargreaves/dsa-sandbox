@@ -41,6 +41,14 @@ e.g.
 4. Median is largest of *max_heap* (if *max_heap* bigger)
 OR average of largest of *max_heap* and smallest of *min_heap* (if heaps are equal size)
 
+## Sliding Window
+
+On starting points of `i` and `j`:
+
+* For "maximum length" problems (like this one) - start both at 0
+* For "minimum length" problems - start both at 0
+* For "fixed length" problems - start j at window size - 1
+
 
 ### Resources
 
