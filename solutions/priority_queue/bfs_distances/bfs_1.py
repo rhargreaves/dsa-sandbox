@@ -51,6 +51,6 @@ for i in range(t):
     graph = Graph(n)
     for i in range(m):
         x, y = [int(x) for x in input().split()]
-        graph.connect(x-1, y-1)
+        graph.connect(x - 1, y - 1)
     s = int(input())
-    graph.find_all_distances(s-1)
+    graph.find_all_distances(s - 1)

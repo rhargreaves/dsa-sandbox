@@ -1,9 +1,6 @@
 #!/bin/python3
 
-import math
 import os
-import random
-import re
 import sys
 import heapq
 
@@ -39,8 +36,8 @@ def runningMedian(a):
     return medians
 
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+if __name__ == "__main__":
+    fptr = open(os.environ["OUTPUT_PATH"], "w")
 
     a_count = int(input().strip())
 
@@ -52,7 +49,7 @@ if __name__ == '__main__':
 
     result = runningMedian(a)
 
-    fptr.write('\n'.join([f"{r:0.1f}" for r in result]))
-    fptr.write('\n')
+    fptr.write("\n".join([f"{r:0.1f}" for r in result]))
+    fptr.write("\n")
 
     fptr.close()
